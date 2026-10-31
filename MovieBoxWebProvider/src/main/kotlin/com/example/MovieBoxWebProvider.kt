@@ -2,6 +2,15 @@ package com.example
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
+import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
+import com.lagradost.cloudstream3.plugins.Plugin
+
+@CloudstreamPlugin
+class MovieBoxWebPlugin : Plugin() {
+    override fun load(context: android.content.Context) {
+        registerMainAPI(MovieBoxWebProvider())
+    }
+}
 
 class MovieBoxWebProvider : MainAPI() {
     override var mainUrl = "https://officialmoviebox.com"
