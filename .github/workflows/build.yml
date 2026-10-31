@@ -1,9 +1,48 @@
-- name: Push builds
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Checkout builds
+      uses: actions/checkout@v4
+      with:
+        ref: builds
+        path: builds
+
+    - name: Clean old builds
+      run: rm $GITHUB_WORKSPACE/builds/*.cs3 || true
+
+    - name: Setup JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v4
+
+    - name: Accept Android Licenses
+      run: yes | sdkmanager --licenses || true
+
+    - name: Build Plugins
+      run: |
+        chmod +x gradlew
+        ./gradlew make
+
+    - name: Push builds
       run: |
         cd builds
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        # এখানে builds ফোল্ডারে থাকা .cs3 ফাইলগুলোকে মূল builds ব্রাঞ্চে কপি করা হচ্ছে
         cp *.cs3 . || true
         git add *.cs3
         git commit -m "Build new plugins" || true
