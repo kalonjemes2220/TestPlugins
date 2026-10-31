@@ -1,10 +1,10 @@
 [
     {
-        "url": "https://raw.githubusercontent.com/kalonjemes2220/TestPlugins/builds/MovieBoxWebPlugin.cs3",
+        "url": "https://raw.githubusercontent.com/kalonjemes2220/TestPlugins/builds/MovieBoxWebProvider.cs3",
         "status": 1,
         "version": 1,
         "name": "MovieBoxWeb",
-        "internalName": "MovieBoxWebPlugin",
+        "internalName": "MovieBoxWebProvider",
         "authors": [
             "kalonjemes2220"
         ],
