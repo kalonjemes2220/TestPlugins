@@ -86,6 +86,9 @@ subprojects {
     }
 }
 
+// আপনার নতুন প্রোভাইডারটি এখানে যুক্ত করা হলো
+include(":MovieBoxWebProvider")
+
 task<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
