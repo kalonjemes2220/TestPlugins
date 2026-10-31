@@ -14,8 +14,8 @@ buildscript {
         classpath("com.android.tools.build:gradle:8.7.3")
         // Cloudstream gradle plugin
         classpath("com.github.recloudstream.gradle:com.lagradost.cloudstream3.gradle.gradle.plugin:-SNAPSHOT")
-        // Updated Kotlin Version to match Cloudstream libraries
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.20")
+        // Kotlin Version updated to 2.4.0 to match Cloudstream libraries
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.0")
     }
 }
 
