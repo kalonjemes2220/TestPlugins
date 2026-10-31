@@ -13,5 +13,7 @@ pluginManagement {
 
 rootProject.name = "TestPlugins"
 
-include(":ExampleProvider")
+// ExampleProvider কে বাদ দেওয়া হলো কারণ এটি এরর দিচ্ছিল
+// include(":ExampleProvider") 
+
 include(":MovieBoxWebProvider")
