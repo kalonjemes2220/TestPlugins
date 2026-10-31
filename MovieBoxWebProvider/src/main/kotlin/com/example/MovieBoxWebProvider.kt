@@ -15,7 +15,6 @@ class MovieBoxWebProvider : MainAPI() {
     )
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        // আপাতত কোনো ডেটা ছাড়া ফাঁকা লিস্ট রিটার্ন করছে, যাতে কোনো এরর না আসে
         val home = listOf<HomePageList>()
         return newHomePageResponse(home)
     }
