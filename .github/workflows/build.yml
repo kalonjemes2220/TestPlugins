@@ -38,13 +38,38 @@ jobs:
         chmod +x gradlew
         ./gradlew make
 
+    - name: Generate plugins.json
+      run: |
+        cd builds
+        FILE_NAME=$(find .. -name "*.cs3" -exec basename {} \; | head -n 1)
+        FILE_SIZE=$(stat -c%s "$FILE_NAME")
+        FILE_HASH="sha256-$(sha256sum "$FILE_NAME" | awk '{print $1}')"
+        
+        echo '[
+          {
+            "url": "https://raw.githubusercontent.com/kalonjemes2220/TestPlugins/builds/'"$FILE_NAME"'",
+            "status": 1,
+            "version": 1,
+            "name": "MovieBoxWeb",
+            "internalName": "MovieBoxWebPlugin",
+            "authors": ["kalonjemes2220"],
+            "description": "MovieBox Web Provider",
+            "repositoryUrl": "https://github.com/kalonjemes2220/TestPlugins",
+            "language": "en",
+            "tvTypes": ["Movie", "TvSeries"],
+            "apiVersion": 1,
+            "fileSize": '"$FILE_SIZE"',
+            "fileHash": "'"$FILE_HASH"'"
+          }
+        ]' > plugins.json
+
     - name: Push builds
       run: |
         cd builds
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        # পুরো প্রোজেক্টের ভেতরে যেকোনো জায়গায় থাকা .cs3 ফাইল খুঁজে বের করে builds ফোল্ডারে নিয়ে আসা হচ্ছে
         find .. -name "*.cs3" -exec cp {} . \; || true
         git add *.cs3
-        git commit -m "Build new plugins" || true
-        git push || true
+        git add plugins.json || true
+        git commit -m "Build new plugins and update plugins.json" || true
+        git push
