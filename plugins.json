@@ -1,20 +1,17 @@
 [
-    {
-        "url": "https://raw.githubusercontent.com/kalonjemes2220/TestPlugins/builds/MovieBoxWebPlugin.cs3",
-        "status": 1,
-        "version": 1,
-        "name": "MovieBoxWeb",
-        "internalName": "MovieBoxWebPlugin",
-        "authors": [
-            "kalonjemes2220"
-        ],
-        "description": "MovieBox Web Provider",
-        "repositoryUrl": "https://github.com/kalonjemes2220/TestPlugins",
-        "language": "en",
-        "tvTypes": [
-            "Movie",
-            "TvSeries"
-        ],
-        "apiVersion": 1
-    }
+  {
+    "url": "https://raw.githubusercontent.com/kalonjemes2220/TestPlugins/builds/MovieBoxWebProvider.cs3",
+    "status": 1,
+    "version": 1,
+    "name": "MovieBoxWeb",
+    "internalName": "MovieBoxWebPlugin",
+    "authors": ["kalonjemes2220"],
+    "description": "MovieBox Web Provider",
+    "repositoryUrl": "https://github.com/kalonjemes2220/TestPlugins",
+    "language": "en",
+    "tvTypes": ["Movie", "TvSeries"],
+    "apiVersion": 1,
+    "fileSize": 4168,
+    "fileHash": "sha256-6b027e2e12be6197d373365250b6c443fdba0c6b459601aea33b86ebf79f3d57"
+  }
 ]
