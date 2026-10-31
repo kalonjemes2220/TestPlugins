@@ -41,7 +41,15 @@ jobs:
     - name: Generate plugins.json
       run: |
         cd builds
-        FILE_NAME=$(find .. -name "*.cs3" -exec basename {} \; | head -n 1)
+        # পুরো প্রোজেক্ট থেকে .cs3 ফাইল খুঁজে বের করা
+        FILE_PATH=$(find .. -name "*.cs3" | head -n 1)
+        if [ -z "$FILE_PATH" ]; then
+          echo "No .cs3 file found!"
+          exit 1
+        fi
+        FILE_NAME=$(basename "$FILE_PATH")
+        cp "$FILE_PATH" .
+        
         FILE_SIZE=$(stat -c%s "$FILE_NAME")
         FILE_HASH="sha256-$(sha256sum "$FILE_NAME" | awk '{print $1}')"
         
@@ -68,8 +76,7 @@ jobs:
         cd builds
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        find .. -name "*.cs3" -exec cp {} . \; || true
         git add *.cs3
-        git add plugins.json || true
+        git add plugins.json
         git commit -m "Build new plugins and update plugins.json" || true
         git push
