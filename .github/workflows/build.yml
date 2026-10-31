@@ -43,7 +43,8 @@ jobs:
         cd builds
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        cp *.cs3 . || true
+        # পুরো প্রোজেক্টের ভেতরে যেকোনো জায়গায় থাকা .cs3 ফাইল খুঁজে বের করে builds ফোল্ডারে নিয়ে আসা হচ্ছে
+        find .. -name "*.cs3" -exec cp {} . \; || true
         git add *.cs3
         git commit -m "Build new plugins" || true
-        git push
+        git push || true
