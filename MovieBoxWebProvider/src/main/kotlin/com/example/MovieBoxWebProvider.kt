@@ -1,3 +1,4 @@
+
 package com.example
 
 import com.lagradost.cloudstream3.*
@@ -24,21 +25,8 @@ class MovieBoxWebProvider : MainAPI() {
     )
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val list = mutableListOf<HomePageList>()
-        
-        // ডামি ডেটা (যাতে অ্যাপ ক্র্যাশ না করে)
-        val items = mutableListOf<SearchResponse>()
-        for (i in 1..10) {
-            items.add(newMovieSearchResponse(
-                name = "${request.name} Movie $i",
-                url = "$mainUrl/movie/$i",
-                type = TvType.Movie,
-                posterUrl = "https://via.placeholder.com/300x450?text=Movie+$i"
-            ))
-        }
-        list.add(newHomePageList(request.name, items))
-        
-        return newHomePageResponse(list)
+        val home = listOf<HomePageList>()
+        return newHomePageResponse(home)
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
