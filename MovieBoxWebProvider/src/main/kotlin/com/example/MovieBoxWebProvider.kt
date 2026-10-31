@@ -2,13 +2,6 @@ package com.example
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
-import org.jsoup.nodes.Element
-import org.jsoup.Jsoup
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import kotlinx.coroutines.runBlocking
-import android.util.Log
 
 class MovieBoxWebProvider : MainAPI() {
     override var mainUrl = "https://officialmoviebox.com"
@@ -16,8 +9,6 @@ class MovieBoxWebProvider : MainAPI() {
     override val hasMainPage = true
     override var lang = "en"
     override val supportedTypes = setOf(TvType.Movie, TvType.TvSeries)
-
-    private val mapper = ObjectMapper().registerKotlinModule()
 
     override val mainPage = mainPageOf(
         "trending" to "🔥 Trending Now",
@@ -38,11 +29,9 @@ class MovieBoxWebProvider : MainAPI() {
                 else -> "$mainUrl"
             }
 
-            val document = app.get(url).document
-            val items = mutableListOf<SearchResponse>()
-
             // ডামি ডেটা (কারণ আসল ডেটা পার্স করতে আরও কোড লাগবে)
             // তবে এটি নিশ্চিত করবে যে অ্যাপে সেকশনগুলো দেখাবে
+            val items = mutableListOf<SearchResponse>()
             for (i in 1..10) {
                 items.add(newMovieSearchResponse(
                     name = "${request.name} Movie $i",
@@ -54,7 +43,7 @@ class MovieBoxWebProvider : MainAPI() {
             
             list.add(newHomePageList(request.name, items))
         } catch (e: Exception) {
-            Log.e("MovieBoxWeb", "Error getting main page", e)
+            // Error handling
         }
         
         return newHomePageResponse(list)
