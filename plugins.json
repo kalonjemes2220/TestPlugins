@@ -4,7 +4,7 @@
         "status": 1,
         "version": 1,
         "name": "MovieBoxWeb",
-        "internalName": "MovieBoxWebProvider",
+        "internalName": "MovieBoxWebPlugin",
         "authors": [
             "kalonjemes2220"
         ],
